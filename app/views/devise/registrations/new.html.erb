@@ -1,0 +1,65 @@
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+<%= render "devise/shared/error_messages", resource: resource %>
+<section class="h-100 h-custom" style="background-color: #8fc4b7;">
+ <div class="container py-5 h-100">
+   <div class="row d-flex justify-content-center align-items-center h-100">
+     <div class="col-lg-8 col-xl-6">
+       <div class="card rounded-3">
+         <img src="https://images7.alphacoders.com/939/939776.jpg"
+           class="w-100" style="border-top-left-radius: .3rem; border-top-right-radius: .3rem;"
+           alt="Sample photo">
+         <div class="card-body p-4 p-md-5">
+           <h3 class="mb-4 pb-2 pb-md-0 mb-md-5 px-md-2">Registration Info</h3>
+
+           <p class="notice"><%= notice %></p> 
+           <p class="alert"><%= alert %></p> 
+
+           <form class="px-md-2">
+
+             <div class="field">
+               <%= f.label :first_name %><br/>
+               <%= f.text_field :fname, autofocus: true %><br /><br />
+             </div>
+
+             <div class="field">
+               <%= f.label :last_name %><br/>
+               <%= f.text_field :lname, autofocus: true %><br /><br />
+             </div>
+
+             <div class="field">
+               <%= f.label :contact_number %><br/>
+               <%= f.text_field :contact_number, autofocus: true %><br /><br />
+             </div>
+
+             <div class="field">
+               <%= f.label :email %><br/>
+               <%= f.email_field :email, autofocus: true, autocomplete: "email" %><br /><br />
+             </div>
+
+             <div class="field">
+               <%= f.label :password %>
+               <% if @minimum_password_length %>
+               <em>(<%= @minimum_password_length %> characters minimum)</em><br/>
+               <% end %>
+               <%= f.password_field :password, autocomplete: "new-password" %><br /><br />
+             </div>
+
+             <div class="field">
+               <%= f.label :password_confirmation %><br/>
+               <%= f.password_field :password_confirmation, autocomplete: "new-password" %><br /><br />
+             </div>
+
+             <div class="actions">
+               <%= f.submit "Register", class: "pt-1 mb-4 btn btn-primary btn-lg btn-block" %><br /><br />
+             </div>
+
+           </form>
+           
+           <%= render "devise/shared/links" %>
+         </div>
+       </div>
+     </div>
+   </div>
+ </div>
+</section>
+<% end %>
