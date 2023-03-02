@@ -72,3 +72,5 @@ group :test do
 end
 gem 'cancancan'
 gem 'rubocop', require: false
+gem 'dotenv-rails'
+gem 'rest-client'
