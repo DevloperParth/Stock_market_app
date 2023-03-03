@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get 'coins/index'
+  get 'currencies/index'
   get 'profiles/index'
   get 'admins/index'
   devise_for :users

@@ -74,3 +74,5 @@ gem 'cancancan'
 gem 'rubocop', require: false
 gem 'dotenv-rails'
 gem 'rest-client'
+gem 'byebug'
+gem 'pry'
