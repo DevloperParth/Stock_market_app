@@ -13,7 +13,7 @@
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" href="currencies/index">My Coins</a>
+        <a class="nav-link" href="/currencies/my_coins">My Coins</a>
       </li>
 
       <li class="nav-item">
@@ -21,7 +21,7 @@
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" href="profiles/index">Profile</a>
+        <a class="nav-link" href="/profiles/index">Profile</a>
       </li>
 
       <li class="nav-item">
@@ -54,7 +54,7 @@
     <td><%= data.id %></td>  
     <td><%= data.name %></td>  
     <td><%= data.price %></td>
-    <td><%= link_to 'Buy', currencies_index_path(id: data.id), :class=>"button primary fi-plus" %></td>
+    <td><%= link_to 'Buy', currencies_buy_path(id: data.id), :class=>"button primary fi-plus" %></td>
   </tr>
 <% end %> 
   </tbody>
@@ -84,5 +84,27 @@
     </form>
   </div>
 </nav> 
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col"></th>
+      <th scope="col">Name</th>
+      <th scope="col">Price</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    </tr>
+<% @currency.each do |data| %>
+  <tr>
+    <td><%= data.id %></td>  
+    <td><%= data.name %></td>  
+    <td><%= data.price %></td>
+  </tr>
+<% end %> 
+  </tbody>
+</table>
+
    
 <% end %>
