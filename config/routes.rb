@@ -5,6 +5,9 @@ Rails.application.routes.draw do
   get 'profiles/index'
   get 'admins/index'
   get 'currencies/my_coins'
+  get 'wallets/index'
+  get 'wallets/edit'
+  post 'wallets/update'
   devise_for :users
   # get 'homes/index'
   # # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
