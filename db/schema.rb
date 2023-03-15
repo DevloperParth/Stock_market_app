@@ -10,9 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_24_133613) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_13_123928) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "currencies", force: :cascade do |t|
+    t.string "name"
+    t.string "price"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "quantities", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "currency_id", null: false
+    t.integer "coin_quantity", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["currency_id"], name: "index_quantities_on_currency_id"
+    t.index ["user_id"], name: "index_quantities_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -32,8 +50,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_24_133613) do
     t.string "fname"
     t.string "lname"
     t.string "contact_number"
+    t.string "role", default: "user"
+    t.string "coin_name"
+    t.integer "coin_price"
+    t.integer "coin_quantity", default: 0
+    t.integer "my_money", default: 0
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "quantities", "currencies"
+  add_foreign_key "quantities", "users"
 end
