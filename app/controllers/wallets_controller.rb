@@ -17,10 +17,4 @@ class WalletsController < ApplicationController
     end
   end
   
-  private
-  
-  def money_params
-    # binding.pry
-    params.permit(:my_money)
-  end
 end
