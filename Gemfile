@@ -70,7 +70,6 @@ group :test do
   gem 'selenium-webdriver'
   gem 'webdrivers'
 end
-gem 'cancancan'
 gem 'rubocop', require: false
 gem 'dotenv-rails'
 gem 'rest-client'

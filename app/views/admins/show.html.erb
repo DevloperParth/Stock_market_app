@@ -1,0 +1,116 @@
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #8fc4b7">
+<img src="https://wallpaper.dog/large/20525225.jpg" width="150" height="120" class="d-inline-block align-top" alt="">
+  <a class="navbar-brand" >Cryptomania</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+</nav> 
+
+<h3><%= "#{@profile.fname}" +" "+ "#{@profile.lname}" %>'s Profile</h3>
+
+
+<section style="background-color: #8fc4b7;">
+
+<div class="col-lg-18">
+  <div class="card mb-4">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-sm-3">
+          <p class="mb-0">Full Name</p>
+        </div>
+        <div class="col-sm-9">
+          <p class="text-muted mb-0"><%= "#{@profile.fname}" +" "+ "#{@profile.lname}" %></p>
+        </div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-sm-3">
+          <p class="mb-0">Email</p>
+        </div>
+        <div class="col-sm-9">
+          <p class="text-muted mb-0"><%="#{@profile.email}"%></p>
+        </div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-sm-3">
+          <p class="mb-0">Phone</p>
+        </div>
+        <div class="col-sm-9">
+          <p class="text-muted mb-0"><%="#{@profile.contact_number}"%></p>
+        </div>
+      </div> 
+      <hr>
+      <div class="row">
+        <div class="col-sm-3">
+          <p class="mb-0">Current Balance</p>
+        </div>
+        <div class="col-sm-9">
+          <p class="text-muted mb-0"><%="#{@profile.my_money}"%></p>
+        </div>
+      </div> 
+</section>
+<div class="d-flex">
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col"></th>
+      <th scope="col">Name</th>
+      <th scope="col">Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    </tr>
+<% @profile.currencies.each do |data| %>
+  <tr>
+    <td><%= data.id %></td>  
+    <td><%= data.name %></td>  
+    <td><%= data.price %></td>
+    </tr>
+<% end %> 
+  </tbody>
+</table>
+      
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Quantity</th>
+    </tr>
+  </thead>
+  <tbody>
+    </tr>
+<% @profile.quantities.each do |q|%>
+      <tr>
+      <td><%= q.coin_quantity %></td>
+      </tr>
+  <% end %> 
+  </tbody>
+</table>
+</div>
+
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Buy</th>
+      <th scope="col">Sell</th>
+    </tr>
+  </thead>
+  <tbody>
+    </tr>
+<% @profile.quantities.find_all.each do |data|%>
+
+    <tr>
+    <td><%= data.currency[:name]%></td>
+    <td>Buy at <%= data.created_at %></td>
+    <% if data.created_at != data.updated_at%>
+      <td>Sell at <%= data.updated_at %></td>
+    <%end%>
+  </tr>
+<% end %> 
+  </tbody>
+</table>
+
+<b><%= link_to "Back", :back %></b>

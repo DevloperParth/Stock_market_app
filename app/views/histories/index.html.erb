@@ -1,39 +1,5 @@
-<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #8fc4b7">
-<img src="https://wallpaper.dog/large/20525225.jpg" width="150" height="120" class="d-inline-blockdatalign-top"datalt="">
-  <a class="navbar-brand" >Cryptomania</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"dataria-controls="navbarSupportedContent"dataria-expanded="false"dataria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto"style="font-color: #0a0a0a">
-      <li class="nav-itemdatactive">
-        <a class="nav-link" href="/">Home <span class="sr-only"></span></a>
-      </li>
-
-      <li class="nav-item">
-        <a class="nav-link" href="/currencies/my_coins">My Coins</a>
-      </li>
-
-      <li class="nav-item">
-        <a class="nav-link" href="/histories/index">History</a>
-      </li>
-
-      <li class="nav-item">
-        <a class="nav-link" href="/profiles/index">Profile</a>
-      </li>
-
-      <li class="nav-item">
-        <a class="nav-link" href="/wallets/index">My Wallet</a>
-      </li>
-
-      <%= link_to "Sign out", destroy_user_session_path, method: :delete %> 
-      
-     
-    </ul>
-  
-  </div>
-</nav> 
+<%= render "currencies/navbar"%>
 
 <table class="table">
   <thead>
@@ -45,13 +11,19 @@
   </thead>
   <tbody>
     </tr>
-<% @history.each do |data|%>
+<% current_user.quantities.find_all.each do |data|%>
 
     <tr>
-    <td><%= data.currency[:name]%></td>
-    <td>Buy at <%= data.created_at %></td>
+    <td><b><%= data.currency[:name]%></b></td>
+    <td><b>Buy at</b> <%= data.created_at %></td>
     <% if data.created_at != data.updated_at%>
-      <td>Sell at <%= data.updated_at %></td>
+      <td><b>Sell at</b> <%= data.updated_at %>
+      <% if data.currency[:price] > data.currency[:previous_price] %>
+        <b>Loss of <%= loss(data) %></b>
+      <%else%>
+        <b>Profit of <%= profit(data) %></b>
+      <%end%>
+      </td>
     <%end%>
   </tr>
 <% end %> 

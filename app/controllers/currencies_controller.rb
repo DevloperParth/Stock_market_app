@@ -1,15 +1,19 @@
 class CurrenciesController < ApplicationController
 
+  def index
+  end
+
   def my_coins
-    @current_user = current_user
   end
   
   def buy 
-    @curency = Currency.find(params[:id])
-    @user = current_user.quantities.find_or_initialize_by(currency_id: @curency["id"])
-    if current_user.my_money >= @curency.price.to_i
-      current_user.my_money = current_user.my_money - @curency.price.to_i
+    @currency = Currency.find(params[:id])
+    @user = current_user.quantities.find_or_initialize_by(currency_id: @currency["id"])
+    if current_user.my_money >= @currency.price.to_i
+      current_user.my_money = current_user.my_money - @currency.price.to_i
       current_user.save
+      @currency.previous_price = @currency.price.to_i
+      @currency.save
       @user.coin_quantity = @user.coin_quantity + 1
       @user.coin_quantity += params[:coin_quantity].to_i
       if @user.save
@@ -18,15 +22,18 @@ class CurrenciesController < ApplicationController
         render :buy
       end
     else
-      redirect_to wallets_index_path, flash: {notice: "Not enough money, please add required amount."}
+      redirect_to wallets_edit_path, notice: "Not enough money, please add required amount."
     end
   end    
 
   def sell
-    @curency = Currency.find(params[:id])
-    @user = current_user.quantities.find_or_initialize_by(currency_id: @curency["id"])
+    @currency = Currency.find(params[:id])
+    @user = current_user.quantities.find_or_initialize_by(currency_id: @currency["id"])
     if @user.coin_quantity > 0
-      current_user.my_money = current_user.my_money + @curency.price.to_i
+      @admin = User.find_by(role: "admin")
+      @admin.my_money += (@currency.previous_price.to_i)/100
+      @admin.save
+      current_user.my_money = current_user.my_money + (@currency.previous_price.to_i - @currency.previous_price.to_i/100)
       current_user.save
       @user.coin_quantity = @user.coin_quantity - 1
       @user.coin_quantity += params[:coin_quantity].to_i
@@ -40,13 +47,4 @@ class CurrenciesController < ApplicationController
     end
   end
 
-  private
-
-   def currency_params
-    params.require(:currency).permit(:name, :price)
-   end
-   
-   def quantity_params
-    params.require(:quantity).permit(:coin_quantity)
-   end
 end

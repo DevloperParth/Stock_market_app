@@ -7,19 +7,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
   :recoverable, :rememberable, :validatable,
   :confirmable
-  ROLES = %w[admin user]
+  enum role: {
+    admin: "admin",
+    user: "user"
+  }
   
-  def admin?
-    role == 'admin'
-  end
-  
-  def user?
-    role == 'user'
-  end
-    # after_create :coin_quantity
-  # private
-   
-  # def coin_quantity
-  #   current_user.coin_quantity = +1
-  # end
 end
