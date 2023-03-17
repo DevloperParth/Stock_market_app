@@ -1,0 +1,95 @@
+<% if user_signed_in? %> 
+
+<%= render "currencies/navbar"%>
+
+<% if current_user.role == "user" %>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col"></th>
+      <th scope="col">Name</th>
+      <th scope="col">Price</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    </tr>
+<% Currency.all.each do |data| %>
+  <tr>
+    <td><%= data.id %></td>  
+    <td><%= data.name %></td>  
+    <td><%= data.price %></td>
+    <td><b><%= link_to 'Buy', currencies_buy_path(id: data.id), :class=>"button primary fi-plus" %></b></td>
+  </tr>
+<% end %> 
+  </tbody>
+</table>
+
+<% else %>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col"></th>
+      <th scope="col">Name</th>
+      <th scope="col">Price</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    </tr>
+<% Currency.all.each do |data| %>
+  <tr>
+    <td><%= data.id %></td>  
+    <td><%= data.name %></td>  
+    <td><%= data.price %></td>
+    </tr>
+<% end %> 
+  </tbody>
+</table>
+<% end%>
+
+<% else %>
+
+  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #8fc4b7">
+<img src="https://wallpaper.dog/large/20525225.jpg" width="150" height="120" class="d-inline-block align-top" alt="">
+  <a class="navbar-brand" >Cryptomania</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto"style="font-color: #0a0a0a">
+      <li class="nav-item active">
+        <a class="nav-link" href="/">Home <span class="sr-only"></span></a>
+      </li>
+
+      <b><%= link_to "Sign in", new_user_session_path %></b>
+     
+    </ul>
+  </div>
+</nav> 
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col"></th>
+      <th scope="col">Name</th>
+      <th scope="col">Price</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    </tr>
+<% Currency.all.each do |data| %>
+  <tr>
+    <td><%= data.id %></td>  
+    <td><%= data.name %></td>  
+    <td><%= data.price %></td>
+  </tr>
+<% end %> 
+  </tbody>
+</table>
+
+<% end %>

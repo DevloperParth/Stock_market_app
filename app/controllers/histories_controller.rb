@@ -1,5 +1,5 @@
+# frozen_string_literal: true
+
 class HistoriesController < ApplicationController
-  def index
-    @history = current_user.quantities.find_all
-  end
+  def index; end
 end
