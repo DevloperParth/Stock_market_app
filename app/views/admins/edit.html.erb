@@ -1,0 +1,18 @@
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #8fc4b7">
+<img src="https://wallpaper.dog/large/20525225.jpg" width="150" height="120" class="d-inline-block align-top" alt="">
+  <a class="navbar-brand" >Cryptomania</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+</nav> 
+
+<h1>Update Price</h1>
+
+<%= form_for @price, url: price_update_path(id: @price), method: :post, local: true do |form| %>
+  <%= form.label :price, "Enter Amount:" %><br>
+  <%= form.text_field :price %>
+  <%= form.submit "Update" %>
+<% end %>
+
+<b><%= link_to "Back", :back %></b>

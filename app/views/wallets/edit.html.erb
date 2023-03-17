@@ -1,0 +1,18 @@
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #8fc4b7">
+<img src="https://wallpaper.dog/large/20525225.jpg" width="150" height="120" class="d-inline-block align-top" alt="">
+  <a class="navbar-brand" >Cryptomania</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+</nav> 
+
+<h1>Add Money in Your Wallet</h1>
+<p class="notice"><%= notice %></p>
+<%= form_with url: money_update_path, method: :post do |form| %>
+  <%= form.label :my_money, "Enter Amount:" %><br>
+  <%= form.text_field :my_money %>
+  <%= form.submit "Add Money" %>
+<% end %>
+
+<b><%= link_to "Back", :back %></b>

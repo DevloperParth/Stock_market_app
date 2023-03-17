@@ -1,0 +1,37 @@
+
+<%= render "currencies/navbar"%>
+
+<section style="background-color: #8fc4b7;">
+
+      <div class="col-lg-18">
+        <div class="card mb-4">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Full Name</p>
+              </div>
+              <div class="col-sm-9">
+                <p class=" mb-0"><b><%= "#{current_user.fname}" +" "+ "#{current_user.lname}" %></b></p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Email</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="mb-0"><b><%="#{current_user.email}"%></b></p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Phone</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="mb-0"><b><%="#{current_user.contact_number}"%></b></p>
+              </div>
+            </div>
+            <hr>
+       <b><%= link_to "Edit Profile", edit_user_registration_path %></b>
+</section>

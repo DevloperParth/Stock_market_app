@@ -1,0 +1,21 @@
+
+<%= render "currencies/navbar"%>
+
+<section style="background-color: #8fc4b7;">
+      <div class="col-lg-18">
+        <div class="card mb-4">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Current Balance</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="mb-0"><b><%= "#{current_user.my_money}"  %></b></p>
+              </div>
+            </div>
+            <hr>
+       <b><%= link_to "Add Money", wallets_edit_path  %></b>
+</section>
+
+
+

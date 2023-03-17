@@ -1,0 +1,31 @@
+
+<%= render "currencies/navbar"%>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Buy</th>
+      <th scope="col">Sell</th>
+    </tr>
+  </thead>
+  <tbody>
+    </tr>
+<% current_user.quantities.find_all.each do |data|%>
+
+    <tr>
+    <td><b><%= data.currency[:name]%></b></td>
+    <td><b>Buy at</b> <%= data.created_at %></td>
+    <% if data.created_at != data.updated_at%>
+      <td><b>Sell at</b> <%= data.updated_at %>
+      <% if data.currency[:price] > data.currency[:previous_price] %>
+        <b>Loss of <%= loss(data) %></b>
+      <%else%>
+        <b>Profit of <%= profit(data) %></b>
+      <%end%>
+      </td>
+    <%end%>
+  </tr>
+<% end %> 
+  </tbody>
+</table>
